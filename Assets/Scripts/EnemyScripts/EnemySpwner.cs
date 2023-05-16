@@ -5,16 +5,21 @@ using UnityEngine;
 public class EnemySpwner : MonoBehaviour
 {
     [SerializeField] GameObject[] enemy;
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] float delTime = 0.2f;
+    private void Start()
     {
-        
+        StartCoroutine(EnemySpawn());
+    }
+    IEnumerator EnemySpawn()
+    {
+        while (true)
+        {
+            int i = Random.Range(0, enemy.Length);
+            GameObject enemys = Instantiate(enemy[i]);
+            int rdIndex = Random.Range(0, transform.childCount);
+            enemys.transform.position = transform.GetChild(rdIndex).position;
+            yield return new WaitForSeconds(delTime);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        int i = Random.Range(0, enemy.Length);
-        GameObject a = Instantiate(enemy[i]);
-    }
 }
