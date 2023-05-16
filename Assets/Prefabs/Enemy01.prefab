@@ -76,7 +76,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 1
   m_Sprite: {fileID: 493312198, guid: b5e586c0ff5e9a34dbc2cb35744d6027, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -124,7 +124,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: -0.082731485}
   serializedVersion: 2
-  m_Radius: 0.31422085
+  m_Radius: 0.67457986
 --- !u!114 &3799131641285551590
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -138,6 +138,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemySpeed: 7
+  expEffect: {fileID: 4871715121636720333, guid: 5b5f0f15af210b247944154d1ed56bbf, type: 3}
+  point: 5
 --- !u!50 &1019177072358917700
 Rigidbody2D:
   serializedVersion: 4
@@ -153,7 +155,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1

@@ -7,6 +7,8 @@ public class EnemeMove : MonoBehaviour
     [SerializeField] float enemySpeed = 7;
     Vector3 dir;
     Player_Controller player;
+    [SerializeField] GameObject expEffect;
+    [SerializeField] int point;
     private void Awake()
     {
         player = FindObjectOfType<Player_Controller>();
@@ -17,6 +19,7 @@ public class EnemeMove : MonoBehaviour
         if(rd < 30)
         {
             dir = player.transform.position - transform.position;
+            dir = dir.normalized;
         }
         else
         {
@@ -29,6 +32,18 @@ public class EnemeMove : MonoBehaviour
         if (transform.position.y <= -10)
         {
             Destroy(gameObject);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Bullet"))
+        {
+            GameObject clone = Instantiate(expEffect, transform.position, Quaternion.identity);
+            Destroy(clone, 0.4f);
+            Destroy(gameObject);
+            Destroy(collision.gameObject);
+            GameManager.instance.AddScore(point);
         }
     }
 }

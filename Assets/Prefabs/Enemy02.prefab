@@ -76,7 +76,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 1
   m_Sprite: {fileID: -257127814, guid: fca580f7e96ca8940b28f6c1c65d6a99, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -101,9 +101,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0137886405, y: 0}
+  m_Offset: {x: 0.020600438, y: 0}
   serializedVersion: 2
-  m_Radius: 0.24755412
+  m_Radius: 0.6585325
 --- !u!95 &7683049255969839099
 Animator:
   serializedVersion: 5
@@ -138,6 +138,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemySpeed: 7
+  expEffect: {fileID: 4871715121636720333, guid: 5b5f0f15af210b247944154d1ed56bbf, type: 3}
+  point: 20
 --- !u!50 &-6649132657716009849
 Rigidbody2D:
   serializedVersion: 4
