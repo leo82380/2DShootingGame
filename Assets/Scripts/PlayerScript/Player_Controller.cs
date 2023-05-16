@@ -11,6 +11,9 @@ public class Player_Controller : MonoBehaviour
     [SerializeField] float bottom;
     [SerializeField] float right;
     [SerializeField] float left;
+
+    [SerializeField] GameObject playerBullet;
+    [SerializeField] float delTime;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,15 +24,32 @@ public class Player_Controller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Move();
-    }
-    void Move()
-    {
+        #region Move
         float x = Input.GetAxisRaw("Horizontal");
         float y = Input.GetAxisRaw("Vertical");
         Vector3 dir = new Vector3(x, y, 0);
         transform.position += dir.normalized * Time.deltaTime * playerMoveSpeed;
         transform.position = new Vector3(Mathf.Clamp(transform.position.x, minpos.x + right, maxpos.x - left),
             Mathf.Clamp(transform.position.y, minpos.y + bottom, maxpos.y - top), 0);
+        #endregion
+
+        #region shot
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            StartCoroutine(Shot());
+        }
+        #endregion
+    }
+    IEnumerator Shot()
+    {
+        while (true)
+        {
+            if (Input.GetKey(KeyCode.Space))
+            {
+                Instantiate(playerBullet, transform.position, Quaternion.identity);
+                yield return new WaitForSeconds(delTime);
+            }
+            yield return null;
+        }
     }
 }
