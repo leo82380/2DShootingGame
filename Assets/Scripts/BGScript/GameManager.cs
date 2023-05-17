@@ -6,7 +6,7 @@ using TMPro;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-    [SerializeField] TMP_Text scoreText;
+    public static TMP_Text scoreText;
     int score;
     public int Score
     {
@@ -16,8 +16,8 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        scoreText = FindObjectOfType<TMP_Text>();
-        scoreText.text = "score : 0";
+        scoreText = GameObject.Find("Canvas").transform.GetChild(2).transform.GetChild(0).GetComponent<TMP_Text>();
+        scoreText.text = "score : " + score;
         if (instance == null)
         {
             instance = this;
@@ -33,5 +33,9 @@ public class GameManager : MonoBehaviour
         score += point;
         scoreText.text = "score : " + score;
         Debug.Log(Score);
+    }
+    public void ResetScore()
+    {
+        score = 0;
     }
 }

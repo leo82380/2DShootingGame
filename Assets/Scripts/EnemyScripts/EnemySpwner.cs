@@ -6,9 +6,23 @@ public class EnemySpwner : MonoBehaviour
 {
     [SerializeField] GameObject[] enemy;
     [SerializeField] float delTime = 0.2f;
+    [SerializeField] Player_Controller player;
+    bool isSpawn;
     private void Start()
     {
-        StartCoroutine(EnemySpawn());
+        player = FindObjectOfType<Player_Controller>();
+        isSpawn = true;
+    }
+    private void Update()
+    {
+        if (player.isgame == true)
+        {
+            if (isSpawn == true)
+            {
+                StartCoroutine(EnemySpawn());
+                isSpawn = false;
+            }
+        }
     }
     IEnumerator EnemySpawn()
     {
