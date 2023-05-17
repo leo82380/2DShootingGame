@@ -13,6 +13,11 @@ public class GameManager : MonoBehaviour
     public Player_Controller player;
     int hp = 3;
     public GameObject GameOverPanal;
+    public GameObject GamePanal;
+    private void OnEnable()
+    {
+        scoreText = GameObject.Find("Canvas").transform.GetChild(2).transform.GetChild(0).GetComponent<TMP_Text>();
+    }
     public int Score
     {
         get => score;
@@ -23,10 +28,10 @@ public class GameManager : MonoBehaviour
     {
         scoreText = GameObject.Find("Canvas").transform.GetChild(2).transform.GetChild(0).GetComponent<TMP_Text>();
         scoreText.text = "score : " + score;
+        hp = 3;
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -60,6 +65,7 @@ public class GameManager : MonoBehaviour
     void GameOver()
     {
         GameOverPanal.SetActive(true);
+        GamePanal.SetActive(false);
     }
     void UpdateLifeIcons()
     {

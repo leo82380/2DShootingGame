@@ -20,14 +20,13 @@ public class Player_Controller : MonoBehaviour
     CircleCollider2D circleCollider;
     SpriteRenderer playerSprite;
     [SerializeField] Transform playerSpawnPos;
-    void Start()
-    {
-        circleCollider = GetComponent<CircleCollider2D>();
-        playerSprite = GetComponent<SpriteRenderer>();
-    }
+    
     private void OnEnable()
     {
         die = GetComponent<Animator>();
+        playerSprite = GetComponent<SpriteRenderer>();
+        circleCollider = GetComponent<CircleCollider2D>();
+
         minpos = Camera.main.ViewportToWorldPoint(new Vector2(0, 0));
         maxpos = Camera.main.ViewportToWorldPoint(new Vector2(1, 1));
         transform.position = playerSpawnPos.position;
