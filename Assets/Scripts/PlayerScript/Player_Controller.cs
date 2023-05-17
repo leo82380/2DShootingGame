@@ -23,6 +23,7 @@ public class Player_Controller : MonoBehaviour
     void Start()
     {
         circleCollider = GetComponent<CircleCollider2D>();
+        playerSprite = GetComponent<SpriteRenderer>();
     }
     private void OnEnable()
     {
@@ -78,15 +79,14 @@ public class Player_Controller : MonoBehaviour
     IEnumerator Revive()
     {
         int count = 0;
-        
+        Color color = playerSprite.color;
         while (count < 4)
         {
-
-            
-            playerSprite.color = new Color(0, 0, 0, 0.3f);
+            color.a = 0.3f;
+            playerSprite.color = color;
             yield return new WaitForSeconds(0.25f);
-
-            playerSprite.color = new Color(0, 0, 0, 0.3f);
+            color.a = 1f;
+            playerSprite.color = color;
             yield return new WaitForSeconds(0.25f);
             count++;
         }

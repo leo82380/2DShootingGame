@@ -11,7 +11,7 @@ public class EnemeMove : MonoBehaviour
     [SerializeField] int point;
     private void Awake()
     {
-        player = FindObjectOfType<Player_Controller>();
+        player = GameObject.Find("PlayerSpawnPos").transform.GetChild(0).GetComponent<Player_Controller>();
     }
     private void Start()
     {

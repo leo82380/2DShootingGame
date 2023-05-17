@@ -10,7 +10,7 @@ public class EnemySpwner : MonoBehaviour
     bool isSpawn;
     private void Start()
     {
-        player = FindObjectOfType<Player_Controller>();
+        player = GameObject.Find("PlayerSpawnPos").transform.GetChild(0).GetComponent<Player_Controller>();
         isSpawn = true;
     }
     private void Update()

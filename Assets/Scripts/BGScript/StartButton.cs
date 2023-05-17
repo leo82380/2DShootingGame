@@ -10,12 +10,13 @@ public class StartButton : MonoBehaviour
     private void Start()
     {
         startPanal = GameObject.Find("StartPanal");
-        player = FindObjectOfType<Player_Controller>();
+        player = GameObject.Find("PlayerSpawnPos").transform.GetChild(0).GetComponent<Player_Controller>();
     }
     public void StartGame()
     {
         player.isgame = true;
         startPanal.SetActive(false);
         playPanal.SetActive(true);
+        player.gameObject.SetActive(true);
     }
 }
