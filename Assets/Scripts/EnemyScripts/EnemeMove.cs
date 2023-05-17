@@ -45,5 +45,12 @@ public class EnemeMove : MonoBehaviour
             Destroy(collision.gameObject);
             GameManager.instance.AddScore(point);
         }
+        if (collision.CompareTag("Player"))
+        {
+            GameObject clone = Instantiate(expEffect, transform.position, Quaternion.identity);
+            Destroy(clone, 0.4f);
+            Destroy(gameObject);
+            player.DiePlayer();
+        }
     }
 }

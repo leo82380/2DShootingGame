@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     public Image[] hpImage;
     public Player_Controller player;
     int hp = 3;
+    public GameObject GameOverPanal;
     public int Score
     {
         get => score;
@@ -49,11 +50,16 @@ public class GameManager : MonoBehaviour
         UpdateLifeIcons();
         if (hp <= 0)
         {
+            GameOver();
         }
         else
         {
             StartCoroutine(PlayerRespawn());
         }
+    }
+    void GameOver()
+    {
+        GameOverPanal.SetActive(true);
     }
     void UpdateLifeIcons()
     {
