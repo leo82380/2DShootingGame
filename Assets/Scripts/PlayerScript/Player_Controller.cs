@@ -57,4 +57,9 @@ public class Player_Controller : MonoBehaviour
             yield return null;
         }
     }
+    public void DieEvent()
+    {
+        GameManager.instance.MinusHP();
+        gameObject.SetActive(false);
+    }
 }
