@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class EnemySpwner : MonoBehaviour
 {
@@ -8,20 +9,39 @@ public class EnemySpwner : MonoBehaviour
     [SerializeField] float delTime = 0.2f;
     [SerializeField] Player_Controller player;
     bool isSpawn;
+    float curtime;
+    public bool ishard;
+    [SerializeField]TMP_Text hardmord;
     private void Start()
     {
         player = GameObject.Find("PlayerSpawnPos").transform.GetChild(0).GetComponent<Player_Controller>();
         isSpawn = true;
+        ishard = false;
     }
     private void Update()
     {
-        if (player.isgame == true)
+        if (!GameManager.instance.isGameover)
         {
-            if (isSpawn == true)
+            if (player.isgame == true)
             {
-                StartCoroutine(EnemySpawn());
-                isSpawn = false;
+                curtime += Time.deltaTime;
+                hardmord.text = "Time: " + (int)curtime;
+                if (curtime >= 100)
+                {
+                    delTime = 0.1f;
+                    ishard = true;
+                    hardmord.text = "Hardmord on";
+                }
+                if (isSpawn == true)
+                {
+                    StartCoroutine("EnemySpawn");
+                    isSpawn = false;
+                }
             }
+        }
+        else
+        {
+            StopCoroutine("EnemySpawn");
         }
     }
     IEnumerator EnemySpawn()

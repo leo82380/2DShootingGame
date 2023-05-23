@@ -20,7 +20,8 @@ public class Player_Controller : MonoBehaviour
     CircleCollider2D circleCollider;
     SpriteRenderer playerSprite;
     [SerializeField] Transform playerSpawnPos;
-    
+    bool isdir;
+    int dirSwich = 1;
     private void OnEnable()
     {
         die = GetComponent<Animator>();
@@ -61,9 +62,17 @@ public class Player_Controller : MonoBehaviour
         float x = Input.GetAxisRaw("Horizontal");
         float y = Input.GetAxisRaw("Vertical");
         Vector3 dir = new Vector3(x, y, 0);
-        transform.position += dir.normalized * Time.deltaTime * playerMoveSpeed;
+        transform.position += dir.normalized * Time.deltaTime * playerMoveSpeed * dirSwich;
         transform.position = new Vector3(Mathf.Clamp(transform.position.x, minpos.x + right, maxpos.x - left),
             Mathf.Clamp(transform.position.y, minpos.y + bottom, maxpos.y - top), 0);
+        if (isdir == true)
+        {
+            dirSwich = -1;
+        }
+        else
+        {
+            dirSwich = 1;
+        }
     }
     public void DieEvent()
     {
@@ -91,5 +100,21 @@ public class Player_Controller : MonoBehaviour
         }
 
         circleCollider.enabled = true;
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("dir"))
+        {
+            isdir = true;
+            playerSprite.flipY = true;
+            Destroy(collision.gameObject);
+            StartCoroutine(dirFalse());
+        }
+    }
+    IEnumerator dirFalse()
+    {
+        yield return new WaitForSeconds(3);
+        playerSprite.flipY = false;
+        isdir = false;
     }
 }

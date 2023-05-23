@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 2124851648799621601}
   m_Layer: 0
   m_Name: Enemy02
-  m_TagString: Untagged
+  m_TagString: enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -141,6 +141,8 @@ MonoBehaviour:
   enemySpeed: 7
   expEffect: {fileID: 4871715121636720333, guid: 5b5f0f15af210b247944154d1ed56bbf, type: 3}
   point: 20
+  enemyBullet: {fileID: 4015468133754978617, guid: d1e057a9a2758f545b9b58b085e6c9c2, type: 3}
+  dirItem: {fileID: 8134516123050755556, guid: 670b11d01f57b734f97210c31f6d7e36, type: 3}
 --- !u!50 &-6649132657716009849
 Rigidbody2D:
   serializedVersion: 4

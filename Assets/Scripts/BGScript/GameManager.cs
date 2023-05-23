@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     int hp = 3;
     public GameObject GameOverPanal;
     public GameObject GamePanal;
+    public bool isGameover;
     private void OnEnable()
     {
         scoreText = GameObject.Find("Canvas").transform.GetChild(2).transform.GetChild(0).GetComponent<TMP_Text>();
@@ -56,6 +57,7 @@ public class GameManager : MonoBehaviour
         if (hp <= 0)
         {
             GameOver();
+            isGameover = true;
         }
         else
         {
@@ -64,6 +66,11 @@ public class GameManager : MonoBehaviour
     }
     void GameOver()
     {
+        GameObject[] enemys = GameObject.FindGameObjectsWithTag("enemy");
+        for (int i = 0; i < enemys.Length; i++)
+        {
+            Destroy(enemys[i]);
+        }
         GameOverPanal.SetActive(true);
         GamePanal.SetActive(false);
     }
