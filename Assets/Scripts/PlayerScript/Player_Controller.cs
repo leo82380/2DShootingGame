@@ -84,6 +84,9 @@ public class Player_Controller : MonoBehaviour
     public void DiePlayer()
     {
         die.SetTrigger("onDie");
+        cameraMove.SetBool("isDir", false);
+        isdir = false;
+        playerSprite.flipY = false;
         circleCollider.enabled = false;
     }
     IEnumerator Revive()

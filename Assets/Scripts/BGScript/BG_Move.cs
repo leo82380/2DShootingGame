@@ -13,5 +13,9 @@ public class BG_Move : MonoBehaviour
         {
             transform.position = new Vector3(0, 12, 0);
         }
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
     }
 }
