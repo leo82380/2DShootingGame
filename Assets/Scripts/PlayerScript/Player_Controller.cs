@@ -22,11 +22,13 @@ public class Player_Controller : MonoBehaviour
     [SerializeField] Transform playerSpawnPos;
     bool isdir;
     int dirSwich = 1;
+    Animator cameraMove;
     private void OnEnable()
     {
         die = GetComponent<Animator>();
         playerSprite = GetComponent<SpriteRenderer>();
         circleCollider = GetComponent<CircleCollider2D>();
+        cameraMove = GameObject.Find("Main Camera").GetComponent<Animator>();
 
         minpos = Camera.main.ViewportToWorldPoint(new Vector2(0, 0));
         maxpos = Camera.main.ViewportToWorldPoint(new Vector2(1, 1));
@@ -106,9 +108,10 @@ public class Player_Controller : MonoBehaviour
         if (collision.CompareTag("dir"))
         {
             isdir = true;
+            cameraMove.SetBool("isDir", true);
             playerSprite.flipY = true;
             Destroy(collision.gameObject);
-            StartCoroutine(dirFalse());
+            StartCoroutine("dirFalse");
         }
     }
     IEnumerator dirFalse()
@@ -116,5 +119,6 @@ public class Player_Controller : MonoBehaviour
         yield return new WaitForSeconds(3);
         playerSprite.flipY = false;
         isdir = false;
+        cameraMove.SetBool("isDir", false);
     }
 }
