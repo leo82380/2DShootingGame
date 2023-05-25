@@ -2,18 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.UI;
 
 public class DOTweenTest : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public Image panal;
+    public IEnumerator FadeOut()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        panal.DOFade(0, 1);
+        yield return null;
     }
 }
