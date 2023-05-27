@@ -4,13 +4,12 @@ using UnityEngine;
 
 public class StartButton : MonoBehaviour
 {
-    [SerializeField] GameObject startPanal;
+    [SerializeField] GameObject[] startPanal;
     [SerializeField] GameObject playPanal;
     [SerializeField] Player_Controller player;
     DOTweenTest tween;
     private void Start()
     {
-        startPanal = GameObject.Find("StartPanal");
         tween = GameObject.Find("StartPanal").GetComponent<DOTweenTest>();
         player = GameObject.Find("PlayerSpawnPos").transform.GetChild(0).GetComponent<Player_Controller>();
     }
@@ -24,7 +23,10 @@ public class StartButton : MonoBehaviour
     }
     IEnumerator StartPanalOff()
     {
+        for (int i = 0; i < startPanal.Length; i++)
+        {
+            startPanal[i].gameObject.SetActive(false);
+        }
         yield return new WaitForSeconds(1);
-        startPanal.SetActive(false);
     }
 }

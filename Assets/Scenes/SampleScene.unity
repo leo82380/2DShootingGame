@@ -2396,7 +2396,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!95 &1863688142
 Animator:
   serializedVersion: 5
@@ -2898,7 +2898,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1d15c777f0737b4fb0abe9f9506d4cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startPanal: {fileID: 0}
+  startPanal:
+  - {fileID: 7270958}
+  - {fileID: 1681763294}
   playPanal: {fileID: 1033740928}
   player: {fileID: 0}
 --- !u!1 &1985852922

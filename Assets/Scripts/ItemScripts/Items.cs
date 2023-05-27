@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Items : MonoBehaviour
 {
+    
     [SerializeField] float speed;
     void Update()
     {
