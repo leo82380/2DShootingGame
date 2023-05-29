@@ -28,10 +28,11 @@ public class Player_Controller : MonoBehaviour
         die = GetComponent<Animator>();
         playerSprite = GetComponent<SpriteRenderer>();
         circleCollider = GetComponent<CircleCollider2D>();
-        cameraMove = GameObject.Find("Main Camera").GetComponent<Animator>();
+        Camera mainCam = Camera.main;
+        cameraMove = mainCam.GetComponent<Animator>();
 
-        minpos = Camera.main.ViewportToWorldPoint(new Vector2(0, 0));
-        maxpos = Camera.main.ViewportToWorldPoint(new Vector2(1, 1));
+        minpos = mainCam.ViewportToWorldPoint(new Vector2(0, 0));
+        maxpos = mainCam.ViewportToWorldPoint(new Vector2(1, 1));
         transform.position = playerSpawnPos.position;
         StartCoroutine(Revive());
     }
