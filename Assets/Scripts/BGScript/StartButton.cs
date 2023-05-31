@@ -7,6 +7,7 @@ public class StartButton : MonoBehaviour
     [SerializeField] GameObject[] startPanal;
     [SerializeField] GameObject playPanal;
     [SerializeField] Player_Controller player;
+    [SerializeField] GameObject start;
     DOTweenTest tween;
     private void Start()
     {
@@ -28,5 +29,6 @@ public class StartButton : MonoBehaviour
             startPanal[i].gameObject.SetActive(false);
         }
         yield return new WaitForSeconds(1);
+        start.gameObject.SetActive(false);
     }
 }

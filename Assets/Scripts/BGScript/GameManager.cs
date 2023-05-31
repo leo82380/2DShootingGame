@@ -67,9 +67,14 @@ public class GameManager : MonoBehaviour
     void GameOver()
     {
         GameObject[] enemys = GameObject.FindGameObjectsWithTag("enemy");
+        GameObject[] dirs = GameObject.FindGameObjectsWithTag("dir");
         for (int i = 0; i < enemys.Length; i++)
         {
             Destroy(enemys[i]);
+        }
+        for (int i = 0; i < dirs.Length; i++)
+        {
+            Destroy(dirs[i]);
         }
         GameOverPanal.SetActive(true);
         GamePanal.SetActive(false);

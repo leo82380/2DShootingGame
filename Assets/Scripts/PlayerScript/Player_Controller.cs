@@ -23,6 +23,8 @@ public class Player_Controller : MonoBehaviour
     bool isdir;
     int dirSwich = 1;
     Animator cameraMove;
+    public FloatingJoystick joystick;
+    public ShotButton shot;
     private void OnEnable()
     {
         die = GetComponent<Animator>();
@@ -42,17 +44,17 @@ public class Player_Controller : MonoBehaviour
         {
             Move();
 
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                StartCoroutine(Shot());
-            }
+            //if (Input.GetKeyDown(KeyCode.Space))
+            //{
+            //    StartCoroutine(Shot());
+            //}
         }
     }
-    IEnumerator Shot()
+    public IEnumerator Shot()
     {
         while (true)
         {
-            if (Input.GetKey(KeyCode.Space))
+            if (shot.isClick)
             {
                 Instantiate(playerBullet, transform.position, Quaternion.identity);
                 yield return new WaitForSeconds(delTime);
@@ -62,8 +64,8 @@ public class Player_Controller : MonoBehaviour
     }
     void Move()
     {
-        float x = Input.GetAxisRaw("Horizontal");
-        float y = Input.GetAxisRaw("Vertical");
+        float x = joystick.Horizontal;
+        float y = joystick.Vertical;
         Vector3 dir = new Vector3(x, y, 0);
         transform.position += dir.normalized * Time.deltaTime * playerMoveSpeed * dirSwich;
         transform.position = new Vector3(Mathf.Clamp(transform.position.x, minpos.x + right, maxpos.x - left),
