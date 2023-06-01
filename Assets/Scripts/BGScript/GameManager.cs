@@ -68,6 +68,7 @@ public class GameManager : MonoBehaviour
     {
         GameObject[] enemys = GameObject.FindGameObjectsWithTag("enemy");
         GameObject[] dirs = GameObject.FindGameObjectsWithTag("dir");
+        GameObject[] powers = GameObject.FindGameObjectsWithTag("Power");
         for (int i = 0; i < enemys.Length; i++)
         {
             Destroy(enemys[i]);
@@ -75,6 +76,10 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < dirs.Length; i++)
         {
             Destroy(dirs[i]);
+        }
+        for (int i = 0; i < powers.Length; i++)
+        {
+            Destroy(powers[i]);
         }
         GameOverPanal.SetActive(true);
         GamePanal.SetActive(false);

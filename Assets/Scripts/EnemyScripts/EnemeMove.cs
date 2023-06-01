@@ -9,8 +9,8 @@ public class EnemeMove : MonoBehaviour
     Player_Controller player;
     [SerializeField] GameObject expEffect;
     [SerializeField] int point;
-    [SerializeField] GameObject enemyBullet;
-    [SerializeField] GameObject dirItem;
+    [SerializeField] GameObject[] items;
+    [SerializeField] int per;
     private void Awake()
     {
         player = GameObject.Find("PlayerSpawnPos").transform.GetChild(0).GetComponent<Player_Controller>();
@@ -42,9 +42,10 @@ public class EnemeMove : MonoBehaviour
         if (collision.CompareTag("Bullet"))
         {
             int rd = Random.Range(0, 100);
-            if(rd < 10)
+            int i = Random.Range(0, items.Length);
+            if(rd < per)
             {
-                Instantiate(dirItem, transform.position, Quaternion.identity);
+                Instantiate(items[i], transform.position, Quaternion.identity);
             }
             GameObject clone = Instantiate(expEffect, transform.position, Quaternion.identity);
             Destroy(clone, 0.4f);

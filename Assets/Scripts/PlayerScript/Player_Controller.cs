@@ -25,6 +25,7 @@ public class Player_Controller : MonoBehaviour
     Animator cameraMove;
     public FloatingJoystick joystick;
     public ShotButton shot;
+    public bool isPower;
     private void OnEnable()
     {
         die = GetComponent<Animator>();
@@ -43,11 +44,6 @@ public class Player_Controller : MonoBehaviour
         if (isgame == true)
         {
             Move();
-
-            //if (Input.GetKeyDown(KeyCode.Space))
-            //{
-            //    StartCoroutine(Shot());
-            //}
         }
     }
     public IEnumerator Shot()
@@ -70,6 +66,7 @@ public class Player_Controller : MonoBehaviour
         transform.position += dir.normalized * Time.deltaTime * playerMoveSpeed * dirSwich;
         transform.position = new Vector3(Mathf.Clamp(transform.position.x, minpos.x + right, maxpos.x - left),
             Mathf.Clamp(transform.position.y, minpos.y + bottom, maxpos.y - top), 0);
+
         if (isdir == true)
         {
             dirSwich = -1;
@@ -77,6 +74,15 @@ public class Player_Controller : MonoBehaviour
         else
         {
             dirSwich = 1;
+        }
+
+        if(isPower == true)
+        {
+            playerBullet.gameObject.transform.localScale = new Vector3(1.5f, 1.5f);
+        }
+        else
+        {
+            playerBullet.gameObject.transform.localScale = new Vector3(1, 1);
         }
     }
     public void DieEvent()
@@ -89,6 +95,7 @@ public class Player_Controller : MonoBehaviour
         die.SetTrigger("onDie");
         cameraMove.SetBool("isDir", false);
         isdir = false;
+        isPower = false;
         playerSprite.flipY = false;
         circleCollider.enabled = false;
     }
@@ -119,6 +126,12 @@ public class Player_Controller : MonoBehaviour
             Destroy(collision.gameObject);
             StartCoroutine("dirFalse");
         }
+        if (collision.CompareTag("Power"))
+        {
+            isPower = true;
+            Destroy(collision.gameObject);
+            StartCoroutine("powerlow");
+        }
     }
     IEnumerator dirFalse()
     {
@@ -126,5 +139,10 @@ public class Player_Controller : MonoBehaviour
         playerSprite.flipY = false;
         isdir = false;
         cameraMove.SetBool("isDir", false);
+    }
+    IEnumerator powerlow()
+    {
+        yield return new WaitForSeconds(3);
+        isPower = false;
     }
 }

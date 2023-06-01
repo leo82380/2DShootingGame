@@ -140,8 +140,10 @@ MonoBehaviour:
   enemySpeed: 7
   expEffect: {fileID: 4871715121636720333, guid: 5b5f0f15af210b247944154d1ed56bbf, type: 3}
   point: 5
-  enemyBullet: {fileID: 4015468133754978617, guid: d1e057a9a2758f545b9b58b085e6c9c2, type: 3}
-  dirItem: {fileID: 8134516123050755556, guid: 670b11d01f57b734f97210c31f6d7e36, type: 3}
+  items:
+  - {fileID: 8134516123050755556, guid: 670b11d01f57b734f97210c31f6d7e36, type: 3}
+  - {fileID: 8860631456406045847, guid: b4dd400a41606564eb9002668d2e45c1, type: 3}
+  per: 5
 --- !u!50 &1019177072358917700
 Rigidbody2D:
   serializedVersion: 4
