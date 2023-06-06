@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using System.Linq;
 
 public class GameManager : MonoBehaviour
 {
@@ -15,6 +16,10 @@ public class GameManager : MonoBehaviour
     public GameObject GameOverPanal;
     public GameObject GamePanal;
     public bool isGameover;
+    public TMP_Text bestScoreText;
+    string keyName = "BestScore";
+    int bestScore = 0;
+    public TMP_Text gameoverBestScore;
     private void OnEnable()
     {
         scoreText = GameObject.Find("Canvas").transform.GetChild(2).transform.GetChild(0).GetComponent<TMP_Text>();
@@ -27,6 +32,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+        //PlayerPrefs.DeleteAll();
         scoreText = GameObject.Find("Canvas").transform.GetChild(2).transform.GetChild(0).GetComponent<TMP_Text>();
         scoreText.text = "score : " + score;
         hp = 3;
@@ -38,12 +44,19 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        bestScore = PlayerPrefs.GetInt(keyName, 0);
+        bestScoreText.text = "Best: " + bestScore.ToString();
     }
     public void AddScore(int point)
     {
         score += point;
         scoreText.text = "score : " + score;
         Debug.Log(Score);
+        if(score > bestScore)
+        {
+            PlayerPrefs.SetInt(keyName, score);
+            bestScoreText.text = "Best: " + bestScore.ToString();
+        }
     }
     public void ResetScore()
     {
@@ -66,23 +79,21 @@ public class GameManager : MonoBehaviour
     }
     void GameOver()
     {
+        
         GameObject[] enemys = GameObject.FindGameObjectsWithTag("enemy");
         GameObject[] dirs = GameObject.FindGameObjectsWithTag("dir");
         GameObject[] powers = GameObject.FindGameObjectsWithTag("Power");
-        for (int i = 0; i < enemys.Length; i++)
+        var obj = enemys.Concat(dirs);
+        var obj2 = obj.Concat(powers);
+        for (int i = 0; i < obj2.ToArray().Length; i++)
         {
-            Destroy(enemys[i]);
+            Destroy(obj2.ToArray()[i]);
         }
-        for (int i = 0; i < dirs.Length; i++)
-        {
-            Destroy(dirs[i]);
-        }
-        for (int i = 0; i < powers.Length; i++)
-        {
-            Destroy(powers[i]);
-        }
+        
         GameOverPanal.SetActive(true);
         GamePanal.SetActive(false);
+        PlayerPrefs.GetInt(keyName, 0);
+        gameoverBestScore.text = "Best: " + bestScore.ToString();
     }
     void UpdateLifeIcons()
     {
