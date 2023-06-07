@@ -3,13 +3,27 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
+using TMPro;
 
 public class DOTweenTest : MonoBehaviour
 {
     public Image panal;
+    public Text startText;
+    private void Start()
+    {
+        //StartCoroutine(Typing());
+    }
     public IEnumerator FadeOut()
     {
         panal.DOFade(0, 1);
         yield return null;
+    }
+    public void Typing()
+    {
+        //while (true)
+        //{
+            startText.DOText(startText.text, 5);
+            //yield return new WaitForSeconds(5);
+        //}
     }
 }

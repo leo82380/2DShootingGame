@@ -13,6 +13,7 @@ public class StartButton : MonoBehaviour
     {
         tween = GameObject.Find("StartPanal").GetComponent<DOTweenTest>();
         player = GameObject.Find("PlayerSpawnPos").transform.GetChild(0).GetComponent<Player_Controller>();
+        tween.Typing();
     }
     public void StartGame()
     {
