@@ -9,7 +9,7 @@ public class EnemySpwner : MonoBehaviour
     [SerializeField] float delTime = 0.2f;
     [SerializeField] Player_Controller player;
     bool isSpawn;
-    float curtime;
+    float curtime = 100;
     public bool ishard;
     [SerializeField]TMP_Text hardmord;
     private void Start()
@@ -24,11 +24,11 @@ public class EnemySpwner : MonoBehaviour
         {
             if (player.isgame == true)
             {
-                curtime += Time.deltaTime;
+                curtime -= Time.deltaTime;
                 hardmord.text = "Time: " + (int)curtime;
-                if (curtime >= 100)
+                if (curtime == 0)
                 {
-                    delTime = 0.1f;
+                    delTime = 0.3f;
                     ishard = true;
                     hardmord.text = "Hardmord on";
                 }

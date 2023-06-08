@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class EnemeMove : MonoBehaviour
 {
     [SerializeField] float enemySpeed = 7;
@@ -50,7 +49,6 @@ public class EnemeMove : MonoBehaviour
             GameObject clone = Instantiate(expEffect, transform.position, Quaternion.identity);
             Destroy(clone, 0.4f);
             Destroy(gameObject);
-            Destroy(collision.gameObject);
             GameManager.instance.AddScore(point);
         }
         if (collision.CompareTag("Player"))

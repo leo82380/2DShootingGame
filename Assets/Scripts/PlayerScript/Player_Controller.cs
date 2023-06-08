@@ -26,6 +26,7 @@ public class Player_Controller : MonoBehaviour
     public FloatingJoystick joystick;
     public ShotButton shot;
     public bool isPower;
+    public Transform bulletSpawnPoint;
     private void OnEnable()
     {
         die = GetComponent<Animator>();
@@ -52,7 +53,9 @@ public class Player_Controller : MonoBehaviour
         {
             if (shot.isClick)
             {
-                Instantiate(playerBullet, transform.position, Quaternion.identity);
+                var bulletGo = ObjectPoolManager.instance.Pool.Get();
+
+                bulletGo.transform.position = this.bulletSpawnPoint.position;
                 yield return new WaitForSeconds(delTime);
             }
             yield return null;
