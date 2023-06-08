@@ -92,7 +92,7 @@ public class GameManager : MonoBehaviour
         
         GameOverPanal.SetActive(true);
         GamePanal.SetActive(false);
-        PlayerPrefs.GetInt(keyName, 0);
+        PlayerPrefs.GetInt(keyName, score);
         gameoverBestScore.text = "Best: " + bestScore.ToString();
     }
     void UpdateLifeIcons()
