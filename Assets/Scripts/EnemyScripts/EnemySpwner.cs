@@ -30,7 +30,7 @@ public class EnemySpwner : MonoBehaviour
                 {
                     delTime = 0.3f;
                     ishard = true;
-                    hardmord.text = "Hardmord on";
+                    hardmord.text = "no Hardmord on";
                 }
                 if (isSpawn == true)
                 {
