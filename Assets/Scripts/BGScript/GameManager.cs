@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
@@ -8,8 +8,8 @@ using System.Linq;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-    public static TMP_Text scoreText;
-    int score;
+    static TMP_Text scoreText;
+    private int score;
     public Image[] hpImage;
     public Player_Controller player;
     int hp = 3;
@@ -56,6 +56,7 @@ public class GameManager : MonoBehaviour
         {
             PlayerPrefs.SetInt(keyName, score);
             bestScoreText.text = "Best: " + bestScore.ToString();
+            Debug.Log("wasans");
         }
     }
     public void ResetScore()
